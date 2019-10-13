@@ -1,1 +1,1 @@
-# minichat
+https://airkross.github.io/minichat/
