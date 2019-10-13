@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="fonts/stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" href="style.css">
+    <title>Testovoe</title>
+</head>
+
+<body>
+
+    <div id="app" class="app">
+        <header class="header" id="header">
+            <div class="container-fluid">
+                <div class="row bg">
+                    <div class="col-lg-6 col-12">
+                        <div class="header-img">
+                            <img src="img/h_img.png" alt="Барселона">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <div class="header-description">
+                            <h1>Барселона — обзор города</h1>
+                            <p class="header-text">
+                                Барселона с её золотистыми пляжами, архитектурными шедеврами Гауди, многочисленными
+                                фестивалями и гастрономическим разнообразием понравилась мне в первый же день пребывания
+                                и стала местом, в котором...
+                            </p>
+                            <a href="#" class="read-more">Читать дальше</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </header>
+
+        <section class="section-slider" id="slider">
+            <div class="container-fluid">
+                <div class="row bg ">
+                    <div class="col-12">
+                        <h1 class="title-feedback">Отзывы о Барселоне</h1>
+                    </div>
+                    <div class="col-12">
+                        <div class="variable-width">
+
+                            <div class="wrap-slide" v-for="feed in 6" :key="feed">
+                                <div class="slider-block">
+                                    <div class="user">
+                                        <div class="user-img">
+                                            <img src="img/user.png" alt="Фото">
+                                        </div>
+                                        <span class="card-name">Наталия Полянская</span>
+                                    </div>
+                                    <div class="block-about">
+                                        <span class="orange">БАРСЕЛОНА</span> <span class="grey">— О городе:</span>
+                                        <p class="feedback">
+                                            Барселона – моя третья большая любовь, после Вены и Крита. Это город, в
+                                            который
+                                            я каждый раз возвращаюсь с огромным удовольствием, всем
+                                            рекомендую хоть раз там
+                                            побывать и осмотреть ...
+                                        </p>
+                                    </div>
+                                    <div class="block-photos">
+                                        <div class="block-photo" @click="popupSrc=p.src" data-toggle="modal"
+                                            data-target=".bd-example-modal-sm" v-for="p in photos" :key="p.src">
+                                            <img :src="p.src" alt="Фото">
+                                        </div>
+
+                                        <div class="block-photo">
+                                            <img src="img/IMG_2299.png" alt="Фото">
+                                        </div>
+                                    </div>
+                                    <div class="data-block">
+                                        <span class="data-block-text">около 1 года назад</span>
+                                        <span class="data-block-text dot"> 9 комментариев</span>
+                                        <div class="like-block">
+                                            <div>
+                                                <img src="img/like.png" alt="Нравится">
+                                            </div>
+                                            <span class="data-block-text"> 9</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <button class="all-feed">Все отзывы</button>
+                        <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog"
+                            aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-sm">
+                                <div class="modal-content">
+                                    <img :src="popupSrc" alt="Увеличенное фото">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-chat">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6 col-12 padr br">
+                        <h1 class="chat-title">Чат с пользователем</h1>
+                        <div class="chat-block mr-4">
+                            <!-- header chat -->
+                            <div class="header-chat">
+                                <div class="preson-block-left">
+                                    <div class="person-img">
+                                        <img src="img/Oval 2.png" alt="администратор">
+                                    </div>
+                                    <div class="identy">
+                                        <span class="person-name">
+                                            Наталия Полянская
+                                        </span>
+                                        <span class="person-position">
+                                            <img src="img/Icon — flag.png" alt="Флажок"> Гид по Баварии, фотограф
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="stars">
+                                    <ul class="rating clearfix">
+                                        <li class="current" :style="{'width': starWidth + '%'}"><span class="star-1" @click="starWidth=20"></span></li>
+                                        <li><span class="star-2" @click="starWidth=40"></span></li>
+                                        <li><span class="star-3" @click="starWidth=60"></span></li>
+                                        <li><span class="star-4" @click="starWidth=80"></span></li>
+                                        <li><span class="star-5" @click="starWidth=100"></span></li>
+                                    </ul>
+                                
+                                </div>
+                            </div>
+                            <!-- body chat -->
+                            <div class="body-chat" id="bodyChat">
+                                <p class="center" v-if="!messages.length">Сообщений пока нет.</p>
+                                <div class="block-message-user" v-else v-for="message in messages"
+                                    :class="{'bg-message': message.name === 'admin'}">
+                                    <div class="user-img-block">
+                                        <img :src="message.src" alt="Фото отправителя">
+                                    </div>
+                                    <div class="message-and-date">
+                                        <p class="message-u"> {{message.message}} </p>
+                                        <p class="time"> {{message.date}} </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- footer chat -->
+                            <div class="footer-chat">
+                                <div class="admin-img">
+                                    <img src="img/Oval 2.1.png" alt="Фото администратора">
+                                </div>
+                                <input type="text" class="input-message" placeholder="Напишите сообщение..."
+                                    v-model="message1" @keyup.enter="send('admin')">
+                                <button class="send" @click="send('admin')"><img src="img/Icon — Send.png"
+                                        alt="Отправить"></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12 padl">
+                        <h1 class="chat-title">Чат с администратором</h1>
+                        <div class="chat-block  ">
+                            <div class="chat-header">
+                                <div class="header-chat">
+                                    <div class="preson-block-left">
+                                        <div class="person-img">
+                                            <img src="img/Oval 2.1.png" alt="администратор">
+                                        </div>
+                                        <div class="identy">
+                                            <span class="person-name">
+                                                Администратор
+                                            </span>
+                                            <span class="person-position">
+                                                <img src="img/Icon — flag.png" alt="Флажок"> TravelAsk
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- body chat -->
+                                <div class="body-chat" id="bodyChat">
+                                    <p class="center" v-if="!messages.length">Сообщений пока нет.</p>
+                                    <div class="block-message-user" v-else v-for="message in messages"
+                                        :class="{'bg-message': message.name === 'user'}">
+                                        <div class=" user-img-block">
+                                            <img :src="message.src" alt="Фото отправителя">
+                                        </div>
+                                        <div class="message-and-date">
+                                            <p class="message-u"> {{message.message}} </p>
+                                            <p class="time"> {{message.date}} </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- footer chat -->
+                                <div class="footer-chat">
+                                    <div class="admin-img">
+                                        <img src="img/Oval 2.png" alt="Фото администратора">
+                                    </div>
+                                    <input type="text" class="input-message" placeholder="Напишите сообщение..."
+                                        v-model="message2" @keyup.enter="send()">
+                                    <button class="send" @click="send()"><img src="img/Icon — Send.png"
+                                            alt="Отправить"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="main.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                photos: [{
+                        src: 'img/IMG_2299.png'
+                    },
+                    {
+                        src: 'img/IMG_2388.png'
+                    },
+                    {
+                        src: 'img/IMG_2675.png'
+                    },
+                ],
+                message1: '',
+                message2: '',
+                messages: [],
+                popupSrc: '',
+                starWidth: 0
+            },
+            methods: {
+                send(val) {
+                    if (val === 'admin') {
+                        if (this.message1) {
+                            const message = this.message1;
+                            this.messages.push({
+                                message: message,
+                                name: 'admin',
+                                date: new Date().toISOString().slice(0, 10),
+                                src: 'img/Oval 2.1.png'
+                            })
+                        }
+                        this.message1 = '';
+                    } else {
+                        if (this.message2) {
+                            const message = this.message2;
+                            this.messages.push({
+                                message: message,
+                                name: 'user',
+                                date: new Date().toISOString().slice(0, 10),
+                                src: 'img/Oval 2.png'
+                            })
+                        }
+                        this.message2 = '';
+                    }
+                }
+            }
+        })
+
+        $(function () {
+            $('.variable-width').slick({
+                dots: true,
+                infinite: true,
+                speed: 300,
+                slidesToShow: 1,
+                variableWidth: true,
+                arrows: false,
+
+            });
+        });
+    </script>
+</body>
+
+</html>
